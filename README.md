@@ -145,8 +145,31 @@ You can use the following resources to to get acquainted with some feature selec
   - You are free to use all manner of tools
   - Successive interviews for projects MAY be run to satisfy participating african.ai partners
 
+Comments:
+
+I used fastai library with a number of classifiers.
+
+I tried the following classifiers XGBClassifier, RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, ExtraTreesClassifier, LinearDiscriminantAnalysis, LogisticRegression, KNeighborsClassifier, DecisionTreeClassifier, MLPClassifier, SVC
 
 
+Since outliers can have a dramatic effect on the prediction (espacially for regression problems), i choosed to manage them.
 
+I used the Tukey method (Tukey JW., 1977) to detect ouliers which defines an interquartile range comprised between the 1st and 3rd quartile of the distribution values (IQR). An outlier is a row that have a feature value outside the (IQR +- an outlier step).
 
+I decided to detect outliers from the numerical values features.
 
+I detected 16 outliers and remove them from the training set used.
+
+I compared the selected classifiers and evaluate the mean accuracy of each of them by a stratified kfold cross validation procedure.
+
+![alt text](https://image.ibb.co/f8UwaK/download2.png)
+
+I decided to choose the AdaBoost, RandomForest , ExtraTrees, XGB, and the GradientBoosting classifiers for the ensemble modeling.
+
+I performed a grid search optimization for AdaBoost, ExtraTrees , RandomForest, XGB, GradientBoosting and SVC classifiers
+
+![alt text](https://image.ibb.co/bv3KUe/download.png)
+
+I eventually chose XGB, GradientBoosting, ExtraTrees, RandomForest and Adaboost for the ensemble model, based on the analysis shown in the image above.
+
+I choosed a voting classifier to combine the predictions coming from the 5 classifiers.
